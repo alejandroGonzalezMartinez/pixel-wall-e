@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Compiler;
+
+public enum TokenType
+{
+    LEFT_PAREN, RIGHT_PAREN, LEFT_BRACKET, RIGHT_BRACKET,
+    COMMA, MINUS, PLUS,
+    SEMICOLON, SLASH,
+    BANG, BANG_EQUAL,
+    EQUAL, EQUAL_EQUAL,
+    GREATER, GREATER_EQUAL,
+    LESS, LESS_EQUAL, STAR, POWER,
+    MODULO, ASSIGN,
+
+    IDENTIFIER, STRING, NUMBER,
+
+    SPAWN, COLOR, DRAW_LINE,
+    DRAW_CIRCLE, SIZE, DRAW_RECTANGLE,
+    FILL, GET_ACTUAL_X, GET_ACTUAL_Y,
+    GET_CANVAS_SIZE, GET_COLOR_COUNT,
+    IS_BRUSH_COLOR, IS_BRUSH_SIZE, IS_CANVAS_COLOR, GOTO,
+
+    NEW_LINE, EOF
+}
