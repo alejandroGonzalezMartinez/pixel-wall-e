@@ -1,11 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
-
-namespace Compiler;
+namespace pixel_wall_e.Compiler;
 
 // Clase base abstracta para todas las instrucciones
 public abstract class Statement { }

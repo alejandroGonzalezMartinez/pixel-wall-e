@@ -1,25 +1,15 @@
-﻿@namespace PixelWallE
+﻿@using Microsoft.AspNetCore.Components.Routing
+@using pixel_wall_e.Shared
 
-@page "/"
+@namespace pixel_wall_e
 
-<h1>Editor de dibujo</h1>
-
-<textarea @bind="codigo" rows="10" cols="40"></textarea>
-<br />
-<button @onclick="EjecutarCodigo">Ejecutar</button>
-
-<canvas id="canvas" width="400" height="400" style="border:1px solid black;"></canvas>
-
-@code {
-    string codigo = "";
-
-    async Task EjecutarCodigo()
-    {
-        // En el siguiente paso escribiremos el parser y lógica
-        if (JS != null)
-        await JS.InvokeVoidAsync("alert", "Código ejecutado:\n" + codigo);
-    }
-
-    [Inject]
-    IJSRuntime? JS { get; set; }
-}
+<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p>Lo sentimos, no se encontró la página.</p>
+        </LayoutView>
+    </NotFound>
+</Router>

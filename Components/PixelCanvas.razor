@@ -1,0 +1,47 @@
+@namespace pixel_wall_e.Components
+@using Models
+
+@code {
+    private int gridSize = 32;
+    private PixelCell[,]? canvas;
+
+    protected override void OnInitialized()
+    {
+        canvas = new PixelCell[gridSize, gridSize];
+        for (int y = 0; y < gridSize; y++)
+        {
+            for (int x = 0; x < gridSize; x++)
+            {
+                canvas[y, x] = new PixelCell { X = x, Y = y };
+            }
+        }
+    }
+
+    public void SetPixel(int x, int y, string color)
+    {
+        if (x >= 0 && x < gridSize && y >= 0 && y < gridSize)
+        {
+            if (canvas != null)
+            {
+                canvas[y, x].Color = color;
+                StateHasChanged();
+            }
+        }
+    }
+}
+
+<div class="grid-container" style="display: grid; grid-template-columns: repeat(@gridSize, 16px); width: fit-content;">
+    @for (int y = 0; y < gridSize; y++)
+    {
+        for (int x = 0; x < gridSize; x++)
+        {
+            if (canvas != null)
+            {
+                var cell = canvas[y, x];
+                <div class="pixel-cell"
+                    style="width: 16px; height: 16px; background-color: @cell.Color; border: 1px solid #ddd;">
+                </div>
+            }
+        }
+    }
+</div>

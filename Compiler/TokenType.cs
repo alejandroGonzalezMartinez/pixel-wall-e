@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Compiler;
+namespace pixel_wall_e.Compiler;
 
 public enum TokenType
 {
