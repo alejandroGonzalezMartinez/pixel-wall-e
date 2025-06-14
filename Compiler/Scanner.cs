@@ -69,6 +69,13 @@ public class Scanner
             case '=':
                 AddToken(Match('=') ? TokenType.EQUAL_EQUAL : TokenType.EQUAL);
                 break;
+            case '&':
+                AddToken(Match('&') ? TokenType.AND : TokenType.AMPERSAND);
+                break;
+
+            case '|':
+                AddToken(Match('|') ? TokenType.OR : TokenType.PIPE);
+                break;   
             case '<':
                 if (Match('-'))
                     AddToken(TokenType.ASSIGN);
@@ -83,7 +90,7 @@ public class Scanner
             case ' ':
             case '\r':
             case '\t':
-                break; // ignorar espacios
+                break;
             case '\n':
                 Line++;
                 AddToken(TokenType.NEW_LINE);

@@ -2,38 +2,43 @@
 @using Models
 
 @code {
-    private int gridSize = 32;
-    private PixelCell[,]? canvas;
+    [Parameter]
+    public int Width { get; set; }
+
+    [Parameter]
+    public int Height { get; set; }
+
+    public PixelCell[,]? canvas;
 
     protected override void OnInitialized()
     {
-        canvas = new PixelCell[gridSize, gridSize];
-        for (int y = 0; y < gridSize; y++)
+        canvas = new PixelCell[Height, Width];
+        for (int y = 0; y < Height; y++)
         {
-            for (int x = 0; x < gridSize; x++)
+            for (int x = 0; x < Width; x++)
             {
-                canvas[y, x] = new PixelCell { X = x, Y = y };
+                canvas[y, x] = new PixelCell { X = y, Y = x };
             }
         }
     }
 
     public void SetPixel(int x, int y, string color)
     {
-        if (x >= 0 && x < gridSize && y >= 0 && y < gridSize)
+        if (x >= 0 && x < Height && y >= 0 && y < Width)
         {
             if (canvas != null)
             {
-                canvas[y, x].Color = color;
+                canvas[x, y].Color = color;
                 StateHasChanged();
             }
         }
     }
 }
 
-<div class="grid-container" style="display: grid; grid-template-columns: repeat(@gridSize, 16px); width: fit-content;">
-    @for (int y = 0; y < gridSize; y++)
+<div class="grid-container" style="display: grid; grid-template-columns: repeat(@Width, 16px); width: fit-content;">
+    @for (int y = 0; y < Height; y++)
     {
-        for (int x = 0; x < gridSize; x++)
+        for (int x = 0; x < Width; x++)
         {
             if (canvas != null)
             {

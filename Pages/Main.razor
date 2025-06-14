@@ -3,10 +3,6 @@
 @using pixel_wall_e.Models
 @using pixel_wall_e.Components
 
-<PageTitle>Pixel Wall E</PageTitle>
-
-<h1>Pixel Wall E</h1>
-
 <div class="editor-area">
     <h3>Código</h3>
     <textarea @bind="userCode" rows="15" cols="60" placeholder="Escribe tu código aquí..."></textarea>
@@ -38,8 +34,11 @@
         i <- i + 1
         GoTo [loop1] (i < 10)
         Color(""Blue"")
-        GoTo [loop1] (1 == 1)
         loop_ends_here";
+
+        @* Spawn(10, 10)
+        Color("Black")
+        DrawCircle(0, 0, 4) *@
 
     private string consoleOutput = "";
     private PixelCanvas? canvasRef;
@@ -54,9 +53,23 @@
             var parser = new Parser(tokens);
             var statements = parser.Parse();
 
-            Interpreter.Interpret(statements);
 
-            consoleOutput = "Ejecución finalizada correctamente.";
+            if (canvasRef != null)
+            {
+                for (int y = 0; y < canvasRef.Height; y++)
+                {
+                    for (int x = 0; x < canvasRef.Width; x++)
+                    {
+                        if (canvasRef.canvas != null)
+                            canvasRef.canvas[y, x] = new PixelCell { X = y, Y = x };
+                    }
+                }
+
+                InterpreterState state = new InterpreterState(canvasRef);
+                Interpreter.Interpret(statements, state);
+
+                consoleOutput = "Ejecución finalizada correctamente.";
+            }
         }
         catch (Exception ex)
         {

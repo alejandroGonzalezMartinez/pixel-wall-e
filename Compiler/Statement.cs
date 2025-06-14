@@ -56,11 +56,17 @@ public class DrawLineStatement : Statement
 // DrawRectangle(width, height)
 public class DrawRectangleStatement : Statement
 {
+    public int DirX { get; }
+    public int DirY { get; }
+    public int Distance { get; }
     public int Width { get; }
     public int Height { get; }
 
-    public DrawRectangleStatement(int width, int height)
+    public DrawRectangleStatement(int dirX, int dirY, int distance, int width, int height)
     {
+        DirX = dirX;
+        DirY = dirY;
+        Distance = distance;
         Width = width;
         Height = height;
     }
@@ -70,9 +76,13 @@ public class DrawRectangleStatement : Statement
 public class DrawCircleStatement : Statement
 {
     public int Radius { get; }
+    public int DirX { get; }
+    public int DirY { get; }
 
-    public DrawCircleStatement(int radius)
+    public DrawCircleStatement(int dirX, int dirY, int radius)
     {
+        DirX = dirX;
+        DirY = dirY;
         Radius = radius;
     }
 }

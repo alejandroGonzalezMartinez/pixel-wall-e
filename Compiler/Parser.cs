@@ -66,17 +66,27 @@ public class Parser
 
             case TokenType.DRAW_RECTANGLE:
                 Consume(TokenType.LEFT_PAREN, "Se esperaba '(' después de 'DrawRectangle'.");
+                int dirX = ParseInt();
+                Consume(TokenType.COMMA, "Se esperaba ','.");
+                int dirY = ParseInt();
+                Consume(TokenType.COMMA, "Se esperaba ','.");
+                int dist = ParseInt();
+                Consume(TokenType.COMMA, "Se esperaba ','.");
                 int width = ParseInt();
                 Consume(TokenType.COMMA, "Se esperaba ',' entre ancho y alto.");
                 int height = ParseInt();
                 Consume(TokenType.RIGHT_PAREN, "Se esperaba ')' después del alto.");
-                return new DrawRectangleStatement(width, height);
+                return new DrawRectangleStatement(dirX, dirY, dist, width, height);
 
             case TokenType.DRAW_CIRCLE:
                 Consume(TokenType.LEFT_PAREN, "Se esperaba '(' después de 'DrawCircle'.");
+                int diX = ParseInt();
+                Consume(TokenType.COMMA, "Se esperaba ','.");
+                int diY = ParseInt();
+                Consume(TokenType.COMMA, "Se esperaba ','.");
                 int radius = ParseInt();
                 Consume(TokenType.RIGHT_PAREN, "Se esperaba ')' después del radio.");
-                return new DrawCircleStatement(radius);
+                return new DrawCircleStatement(diX, diY, radius);
 
             case TokenType.FILL:
                 Consume(TokenType.LEFT_PAREN, "Se esperaba '(' después de 'Fill'.");
@@ -224,7 +234,35 @@ public class Parser
 
     private Expression ParseExpression()
     {
-        return ParseEquality();
+        return ParseOr();
+    }
+
+    private Expression ParseOr()
+    {
+        Expression expr = ParseAnd();
+
+        while (Match(TokenType.OR))
+        {
+            Token op = Previous();
+            Expression right = ParseAnd();
+            expr = new BinaryExpression(expr, op, right);
+        }
+
+        return expr;
+    }
+
+    private Expression ParseAnd()
+    {
+        Expression expr = ParseEquality();
+
+        while (Match(TokenType.AND))
+        {
+            Token op = Previous();
+            Expression right = ParseEquality();
+            expr = new BinaryExpression(expr, op, right);
+        }
+
+        return expr;
     }
 
     private Expression ParseEquality()
