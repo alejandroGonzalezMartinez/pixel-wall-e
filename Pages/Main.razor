@@ -2,12 +2,29 @@
 @using pixel_wall_e.Compiler
 @using pixel_wall_e.Models
 @using pixel_wall_e.Components
+@inject IJSRuntime JS
+@using Microsoft.AspNetCore.Components.Forms
 
 <div class="editor-area">
     <h3>Código</h3>
     <textarea @bind="userCode" rows="15" cols="60" placeholder="Escribe tu código aquí..."></textarea>
     <br />
     <button @onclick="RunCode">Ejecutar</button>
+    <button @onclick="ExportCode" style="margin-left: 10px;">Exportar</button>
+    <InputFile OnChange="LoadFile" accept=".txt" />
+</div>
+
+<div class="canvas-controls">
+    <h3>Configuración del Canvas</h3>
+    <label>
+        Ancho:
+        <input type="number" min="1" @bind="canvasWidth" />
+    </label>
+    <label style="margin-left: 10px;">
+        Alto:
+        <input type="number" min="1" @bind="canvasHeight" />
+    </label>
+    <button @onclick="ResizeCanvas" style="margin-left: 10px;">Aplicar</button>
 </div>
 
 <div class="canvas-area">
@@ -39,6 +56,9 @@
         @* Spawn(10, 10)
         Color("Black")
         DrawCircle(0, 0, 4) *@
+
+    private int canvasWidth = 32;
+    private int canvasHeight = 32;
 
     private string consoleOutput = "";
     private PixelCanvas? canvasRef;
@@ -75,5 +95,31 @@
         {
             consoleOutput = $"[ERROR]: {ex.Message}";
         }
+    }
+
+    private void ResizeCanvas()
+    {
+        if (canvasRef != null)
+        {
+            canvasRef.Resize(canvasWidth, canvasHeight);
+        }
+    }
+
+    private async Task LoadFile(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file != null)
+        {
+            using var stream = file.OpenReadStream();
+            using var reader = new StreamReader(stream);
+            string content = await reader.ReadToEndAsync();
+
+            userCode = content;
+        }
+    }
+
+    private async Task ExportCode()
+    {
+        await JS.InvokeVoidAsync("downloadFile", "codigo.txt", userCode);
     }
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("pixel-wall-e")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fac9acebc1d6829b43550cf091cb4fb1c8692e4d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83247d1d08874ebebbdf72aefb34a807cfeaeb6a")]
 [assembly: System.Reflection.AssemblyProductAttribute("pixel-wall-e")]
 [assembly: System.Reflection.AssemblyTitleAttribute("pixel-wall-e")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

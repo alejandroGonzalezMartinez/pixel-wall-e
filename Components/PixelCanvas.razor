@@ -43,14 +43,31 @@
 
         return "#ddd";
     }
+
+    public void Resize(int width, int height)
+    {
+        Width = width;
+        Height = height;
+
+        canvas = new PixelCell[Height, Width];
+        for (int y = 0; y < Height; y++)
+        {
+            for (int x = 0; x < Width; x++)
+            {
+                canvas[y, x] = new PixelCell { X = y, Y = x, Color = "white" };
+            }
+        }
+
+        StateHasChanged();
+    }
 }
 
 <div class="grid-container" style="display: grid; grid-template-columns: repeat(@Width, 16px); width: fit-content;">
-    @for (int y = 0; y < Height; y++)
+    @if (canvas != null)
     {
-        for (int x = 0; x < Width; x++)
+        for (int y = 0; y < canvas.GetLength(0); y++)
         {
-            if (canvas != null)
+            for (int x = 0; x < canvas.GetLength(1); x++)
             {
                 var cell = canvas[y, x];
                 <div class="pixel-cell"
