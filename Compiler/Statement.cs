@@ -155,17 +155,6 @@ public class IsCanvasColorStatement : Statement
     }
 }
 
-// IsColor(name)
-public class IsColorStatement : Statement
-{
-    public string ColorName { get; }
-
-    public IsColorStatement(string colorName)
-    {
-        ColorName = colorName;
-    }
-}
-
 public class GotoStatement : Statement
 {
     public string Label { get; }

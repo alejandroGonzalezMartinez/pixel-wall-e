@@ -90,8 +90,7 @@ public class Parser
 
             case TokenType.FILL:
                 Consume(TokenType.LEFT_PAREN, "Se esperaba '(' después de 'Fill'.");
-                string fillColor = ParseString();
-                Consume(TokenType.RIGHT_PAREN, "Se esperaba ')' después del color.");
+                Consume(TokenType.RIGHT_PAREN, "Se esperaba ')'.");
                 return new FillStatement();
 
             case TokenType.GET_ACTUAL_X:

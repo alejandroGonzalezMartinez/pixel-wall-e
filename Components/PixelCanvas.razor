@@ -33,6 +33,16 @@
             }
         }
     }
+
+    public string GetPixel(int x, int y)
+    {
+        if (x >= 0 && x < Height && y >= 0 && y < Width)
+        {
+            return canvas?[x, y].Color ?? "#ddd";
+        }
+
+        return "#ddd";
+    }
 }
 
 <div class="grid-container" style="display: grid; grid-template-columns: repeat(@Width, 16px); width: fit-content;">

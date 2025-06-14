@@ -1,3 +1,5 @@
+using System.Data;
+
 namespace pixel_wall_e.Compiler;
 
 public class Interpreter
@@ -143,10 +145,64 @@ public class Interpreter
                     Draw(endX, y);
                 }
                 break;
+
+            case FillStatement:
+                Fill(_state.X, _state.Y);
+                break;
+
+            case GetActualXStatement:
+                break;
+            
+            case GetActualYStatement:
+                break;
+            
+            case GetCanvasSizeStatement:
+                break;
+
+            case GetColorCountStatement:
+                break;
+
+            case IsBrushColorStatement:
+                break;
+
+            case IsBrushSizeStatement:
+                break;
+
+            case IsCanvasColorStatement:
+                break;
                 
             default:
                 throw new Exception($"No se puede ejecutar el statement {stmt.GetType()}");
         }
+    }
+
+    private static void Fill(int x, int y)
+    {
+        if (_state == null) return;
+
+        string targetColor = _state.Canvas.GetPixel(x, y);
+
+        if (targetColor == _state.Color) return;
+
+        FloodFill(x, y, targetColor);
+    }
+
+    private static void FloodFill(int x, int y, string targetColor)
+    {
+        if (_state == null) return;
+
+        if (x < 0 || x >= _state.Canvas.Height || y < 0 || y >= _state.Canvas.Width)
+            return;
+
+        if (_state.Canvas.GetPixel(x, y) != targetColor)
+            return;
+
+        _state.Canvas.SetPixel(x, y, _state.Color);
+
+        FloodFill(x - 1, y, targetColor);
+        FloodFill(x + 1, y, targetColor);
+        FloodFill(x, y - 1, targetColor);
+        FloodFill(x, y + 1, targetColor);
     }
 
     private static void Draw(int _x, int _y)
@@ -212,9 +268,53 @@ public class Interpreter
         {
             "GetActualX" => _state.X,
             "GetActualY" => _state.Y,
-            "IsBrushColor" => args.Count == 1 && args[0] is string color && _state.Color == color ? 1 : 0,
+            "GetCanvasSize" => _state.Canvas.Width == _state.Canvas.Height ? _state.Canvas.Width : $"{_state.Canvas.Width} x {_state.Canvas.Height}",
+            "GetColorCount" => GetColorCount(args),
+            "IsBrushColor" => _state.Color == (string)args[0] ? 1 : 0,
+            "IsBrushSize" => IsCanvasColor(args) ? 1 : 0,
+            "IsCanvasColor" => _state.Canvas.GetPixel(_state.X + (int)args[2], _state.Y + (int)args[1]) == (string)args[0] ? 1 : 0,
             _ => throw new Exception($"Función desconocida: {expr.FunctionName}")
         };
+    }
+
+    private static bool IsCanvasColor(List<object> args)
+    {
+        if (_state == null) return false;
+
+        int px = _state.X + (int)args[2];
+        int py = _state.Y + (int)args[1];
+
+        if (px < 0 || px >= _state.Canvas.Height || py < 0 || py >= _state.Canvas.Width)
+            return false;
+
+        return _state.Canvas.GetPixel(px, py) == (string)args[0] ? true : false;
+    }
+
+    private static int GetColorCount(List<object> args)
+    {
+        if (_state == null) return 0;
+
+        string color = (string)args[0];
+        int x1 = (int)args[1];
+        int y1 = (int)args[2];
+        int x2 = (int)args[3];
+        int y2 = (int)args[4];
+
+        if (
+            x1 < 0 || x1 >= _state.Canvas.Height || y1 < 0 || y1 >= _state.Canvas.Width ||
+            x2 < 0 || x2 >= _state.Canvas.Height || y2 < 0 || y2 >= _state.Canvas.Width
+        ) return 0;
+
+        int c = 0;
+        for (int x = x1; x <= x2; x++)
+        {
+            for (int y = y1; y <= y2; y++)
+            {
+                if (_state.Canvas.GetPixel(x, y) == color) c++;
+            }
+        }
+
+        return c;
     }
     
     private static bool IsTruthy(object value)
