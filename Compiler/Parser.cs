@@ -232,14 +232,14 @@ public class Parser
             return sign * value;
         }
 
-        throw new Exception("Se esperaba un número entero.");
+        throw Error(Peek(), "Se esperaba un número entero.");
     }
 
     private string ParseString()
     {
         if (Peek().Type == TokenType.STRING && Peek().Literal is string)
             return (string)Advance().Literal!;
-        throw new Exception("Se esperaba una cadena.");
+        throw Error(Peek(), "Se esperaba una cadena de texto.");
     }
 
     private Expression ParseExpression()
