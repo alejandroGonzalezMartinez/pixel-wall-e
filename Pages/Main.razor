@@ -53,10 +53,6 @@
         Color(""Blue"")
         loop_ends_here";
 
-        @* Spawn(10, 10)
-        Color("Black")
-        DrawCircle(0, 0, 4) *@
-
     private int canvasWidth = 32;
     private int canvasHeight = 32;
 
@@ -65,35 +61,36 @@
 
     private void RunCode()
     {
+        List<Statement> statements;
         try
         {
             var scanner = new Scanner(userCode);
             var tokens = scanner.ScanTokens();
 
             var parser = new Parser(tokens);
-            var statements = parser.Parse();
-
-
-            if (canvasRef != null)
-            {
-                for (int y = 0; y < canvasRef.Height; y++)
-                {
-                    for (int x = 0; x < canvasRef.Width; x++)
-                    {
-                        if (canvasRef.canvas != null)
-                            canvasRef.canvas[y, x] = new PixelCell { X = y, Y = x };
-                    }
-                }
-
-                InterpreterState state = new InterpreterState(canvasRef);
-                Interpreter.Interpret(statements, state);
-
-                consoleOutput = "Ejecución finalizada correctamente.";
-            }
+            statements = parser.Parse();
         }
         catch (Exception ex)
         {
-            consoleOutput = $"[ERROR]: {ex.Message}";
+            consoleOutput = $"[ERROR de análisis]: {ex.Message}";
+            return;
+        }
+
+        if (canvasRef != null)
+        {
+            for (int y = 0; y < canvasRef.Height; y++)
+            {
+                for (int x = 0; x < canvasRef.Width; x++)
+                {
+                    if (canvasRef.canvas != null)
+                        canvasRef.canvas[y, x] = new PixelCell { X = y, Y = x };
+                }
+            }
+
+            InterpreterState state = new InterpreterState(canvasRef);
+
+            var result = Interpreter.Interpret(statements, state);
+            consoleOutput = result;
         }
     }
 

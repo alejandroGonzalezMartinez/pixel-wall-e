@@ -101,3 +101,69 @@ a, .btn-link {
 code {
     color: #c02d76;
 }
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h3 {
+    color: #ffffff;
+}
+
+textarea {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+input[type="number"],
+input[type="file"] {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 4px 6px;
+}
+
+button {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 6px 12px;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #3c3c3c;
+}
+
+.canvas-area, .editor-area, .console-area, .canvas-controls {
+    margin-top: 20px;
+    background-color: #1a1a1a;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.pixel-cell {
+    border: 1px solid #333;
+}
+
+pre {
+    background-color: #0f0f0f;
+    padding: 10px;
+    border-radius: 6px;
+    overflow-x: auto;
+}

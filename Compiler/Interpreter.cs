@@ -6,7 +6,7 @@ public class Interpreter
 {
     private static InterpreterState? _state;
 
-    public static void Interpret(List<Statement> statements, InterpreterState state)
+    public static string Interpret(List<Statement> statements, InterpreterState state)
     {
         _state = state;
 
@@ -22,17 +22,20 @@ public class Interpreter
         _state.InstructionPointer = 0;
         while (_state.InstructionPointer < statements.Count)
         {
-            _state.Jumped = false;
-            Execute(statements[_state.InstructionPointer]);
-
-            if (!_state.Jumped)
-                _state.InstructionPointer++;
-
-            foreach (var par in _state.Variables)
+            try
             {
-                Console.WriteLine($"Clave: {par.Key}, Valor: {par.Value}");
+                _state.Jumped = false;
+                Execute(statements[_state.InstructionPointer]);
+
+                if (!_state.Jumped)
+                    _state.InstructionPointer++;
+            }
+            catch (Exception ex)
+            {
+                return $"[ERROR en línea {_state.InstructionPointer}]: {ex.Message}";
             }
         }
+        return "Ejecución finalizada correctamente.";
     }
 
     private static void Execute(Statement stmt)
