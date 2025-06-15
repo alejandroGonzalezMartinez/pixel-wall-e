@@ -7,11 +7,24 @@
 
 <div class="editor-area">
     <h3>Código</h3>
-    <textarea @bind="userCode" rows="15" cols="60" placeholder="Escribe tu código aquí..."></textarea>
-    <br />
-    <button @onclick="RunCode">Ejecutar</button>
-    <button @onclick="ExportCode" style="margin-left: 10px;">Exportar</button>
-    <InputFile OnChange="LoadFile" accept=".txt" />
+    <div class="code-editor-container">
+        <div class="line-numbers" @ref="lineNumbersRef">
+            @for (int i = 1; i <= userCode.Split('\n').Length; i++)
+            {
+                <div>@i</div>
+            }
+        </div>
+        <textarea class="code-textarea"
+                @ref="codeEditorRef"
+                @bind="userCode"
+                @bind:event="oninput"
+                spellcheck="false"></textarea>
+    </div>
+    <div>
+        <button @onclick="RunCode">Ejecutar</button>
+        <button @onclick="ExportCode" style="margin-left: 10px;">Exportar</button>
+        <InputFile OnChange="LoadFile" accept=".pw" />
+    </div>
 </div>
 
 <div class="canvas-controls">
@@ -38,26 +51,16 @@
 </div>
 
 @code {
-    private string userCode = @"
-        Spawn(0, 0)
-        Color(""Black"")
-        n <- 5
-        k <- 3 + 3 * 10
-        n <- k * 2
-        actual_x <- GetActualX()
-        i <- 0
-        loop1
-        DrawLine(1, 0, 1)
-        i <- i + 1
-        GoTo [loop1] (i < 10)
-        Color(""Blue"")
-        loop_ends_here";
+    private string userCode = "";
 
     private int canvasWidth = 32;
     private int canvasHeight = 32;
 
     private string consoleOutput = "";
     private PixelCanvas? canvasRef;
+
+    private ElementReference codeEditorRef;
+    private ElementReference lineNumbersRef;
 
     private void RunCode()
     {
@@ -88,7 +91,6 @@
             }
 
             InterpreterState state = new InterpreterState(canvasRef);
-
             var result = Interpreter.Interpret(statements, state);
             consoleOutput = result;
         }
@@ -110,13 +112,20 @@
             using var stream = file.OpenReadStream();
             using var reader = new StreamReader(stream);
             string content = await reader.ReadToEndAsync();
-
             userCode = content;
         }
     }
 
     private async Task ExportCode()
     {
-        await JS.InvokeVoidAsync("downloadFile", "codigo.txt", userCode);
+        await JS.InvokeVoidAsync("downloadFile", "codigo.pw", userCode);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("syncEditorScroll", codeEditorRef, lineNumbersRef);
+        }
     }
 }

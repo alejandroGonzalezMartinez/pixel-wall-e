@@ -219,8 +219,19 @@ public class Parser
 
     private int ParseInt()
     {
-        if (Peek().Type == TokenType.NUMBER && Peek().Literal is int)
-            return (int)Advance().Literal!;
+        int sign = 1;
+
+        if (Match(TokenType.MINUS))
+        {
+            sign = -1;
+        }
+
+        if (Peek().Type == TokenType.NUMBER && Peek().Literal is int value)
+        {
+            Advance(); // consume el número
+            return sign * value;
+        }
+
         throw new Exception("Se esperaba un número entero.");
     }
 
