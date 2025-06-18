@@ -1027,3 +1027,12 @@
 /home/alejandro/Escritorio/pixel-wall-e/obj/Debug/net8.0/refint/pixel-wall-e.dll
 /home/alejandro/Escritorio/pixel-wall-e/obj/Debug/net8.0/pixel-wall-e.pdb
 /home/alejandro/Escritorio/pixel-wall-e/obj/Debug/net8.0/ref/pixel-wall-e.dll
+/home/alejandro/Escritorio/pixel-wall-e/bin/Debug/net8.0/dist/web.config
+/home/alejandro/Escritorio/pixel-wall-e/bin/Debug/net8.0/dist/dist/wwwroot/sample-data/weather.json
+/home/alejandro/Escritorio/pixel-wall-e/bin/Debug/net8.0/dist/dist/wwwroot/_framework/blazor.boot.json
+/home/alejandro/Escritorio/pixel-wall-e/bin/Debug/net8.0/dist/vercel.json
+/home/alejandro/Escritorio/pixel-wall-e/bin/Debug/net8.0/dist/wwwroot/sample-data/weather.json
+/home/alejandro/Escritorio/pixel-wall-e/bin/Debug/net8.0/dist/wwwroot/_framework/blazor.boot.json
+/home/alejandro/Escritorio/pixel-wall-e/bin/Debug/net8.0/public/sample-data/weather.json
+/home/alejandro/Escritorio/pixel-wall-e/bin/Debug/net8.0/public/_framework/blazor.boot.json
+/home/alejandro/Escritorio/pixel-wall-e/bin/Debug/net8.0/vercel.json
