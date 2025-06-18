@@ -1,0 +1,1 @@
+/home/alejandro/Escritorio/pixel-wall-e/dist/web.config

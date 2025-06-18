@@ -171,7 +171,7 @@ public class Parser
                 }
     
             default:
-                throw new Exception($"Instrucción inesperada: {token.Lexeme}");
+                throw Error(token, $"Instrucción inesperada: '{token.Lexeme}'.");
         }
     }
 

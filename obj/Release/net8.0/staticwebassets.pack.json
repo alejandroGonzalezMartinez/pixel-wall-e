@@ -1,0 +1,57 @@
+{
+  "Files": [
+    {
+      "Id": "/home/alejandro/Escritorio/pixel-wall-e/bin/Release/net8.0/wwwroot/_framework/blazor.webassembly.js",
+      "PackagePath": "staticwebassets/_framework/blazor.webassembly.js"
+    },
+    {
+      "Id": "/home/alejandro/Escritorio/pixel-wall-e/obj/Release/net8.0/compressed/uadvfup1hm.gz",
+      "PackagePath": "staticwebassets/_framework/blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "/home/alejandro/Escritorio/pixel-wall-e/wwwroot/css/app.css",
+      "PackagePath": "staticwebassets/css/app.css"
+    },
+    {
+      "Id": "/home/alejandro/Escritorio/pixel-wall-e/wwwroot/css/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/css/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/home/alejandro/Escritorio/pixel-wall-e/wwwroot/css/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/home/alejandro/Escritorio/pixel-wall-e/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "/home/alejandro/Escritorio/pixel-wall-e/wwwroot/icon-192.png",
+      "PackagePath": "staticwebassets/icon-192.png"
+    },
+    {
+      "Id": "/home/alejandro/Escritorio/pixel-wall-e/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/home/alejandro/Escritorio/pixel-wall-e/wwwroot/sample-data/weather.json",
+      "PackagePath": "staticwebassets/sample-data/weather.json"
+    },
+    {
+      "Id": "obj/Release/net8.0/staticwebassets/msbuild.build.pixel-wall-e.props",
+      "PackagePath": "build\\pixel-wall-e.props"
+    },
+    {
+      "Id": "obj/Release/net8.0/staticwebassets/msbuild.buildMultiTargeting.pixel-wall-e.props",
+      "PackagePath": "buildMultiTargeting\\pixel-wall-e.props"
+    },
+    {
+      "Id": "obj/Release/net8.0/staticwebassets/msbuild.buildTransitive.pixel-wall-e.props",
+      "PackagePath": "buildTransitive\\pixel-wall-e.props"
+    },
+    {
+      "Id": "obj/Release/net8.0/staticwebassets/msbuild.pixel-wall-e.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
