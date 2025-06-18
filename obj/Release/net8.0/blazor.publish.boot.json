@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "pixel-wall-e",
   "resources": {
-    "hash": "sha256-lONDPA8STwa2jLCshA+mnURniBiGe3lfDTSq9PMA3Qc=",
+    "hash": "sha256-uV2yeAViarS3aTiAOgigr/weJujNLJj0rFRIUTrSZds=",
     "jsModuleNative": {
       "dotnet.native.8.0.14.fhwo3pc9fo.js": "sha256-DTUQS6Jc6BNnS7sYYezFfaUKVmQq0/lanhQuJfygH/k="
     },
@@ -32,7 +32,7 @@
       "Microsoft.Extensions.Primitives.wasm": "sha256-Ms2HR5Gpug/0uRAzdk4SUNT76Ml3CjFv9Jo+dUIMGac=",
       "Microsoft.JSInterop.wasm": "sha256-p2/WeROj+p96YBmFTGY61ngtay6+eYeJK2n+N443/Co=",
       "Microsoft.JSInterop.WebAssembly.wasm": "sha256-fd2zbkEmDMKwxoRxT9i0gm7xndmnlJJ2YhJ8QaAE1RU=",
-      "pixel-wall-e.wasm": "sha256-uekhpt4Hg6QOlYOGgrQcxjWG1yj1rfVuPOrghG2PaIg=",
+      "pixel-wall-e.wasm": "sha256-7a+XAVHTUJeYK0QMp0H1DwSMJdqW74uUnMmRz1DBHFo=",
       "System.Collections.Concurrent.wasm": "sha256-fizrljryonlUqlS7e7BYDP16z1/PuJvWZxlqJRPe3nA=",
       "System.Collections.wasm": "sha256-sxWDQ7mUIo23k1XEWAJq3dJ3SX2jbBWvXwBPLDfv6EY=",
       "System.ComponentModel.wasm": "sha256-ROX86o93ocLpZP95tZWQdSE3L7Pr4c7PIsbxlyrGewo=",

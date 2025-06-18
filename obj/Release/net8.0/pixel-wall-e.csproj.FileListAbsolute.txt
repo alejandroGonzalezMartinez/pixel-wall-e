@@ -1027,3 +1027,7 @@
 /home/alejandro/Escritorio/pixel-wall-e/obj/Release/net8.0/refint/pixel-wall-e.dll
 /home/alejandro/Escritorio/pixel-wall-e/obj/Release/net8.0/pixel-wall-e.pdb
 /home/alejandro/Escritorio/pixel-wall-e/obj/Release/net8.0/ref/pixel-wall-e.dll
+/home/alejandro/Escritorio/pixel-wall-e/bin/Release/net8.0/dist/web.config
+/home/alejandro/Escritorio/pixel-wall-e/bin/Release/net8.0/dist/wwwroot/sample-data/weather.json
+/home/alejandro/Escritorio/pixel-wall-e/bin/Release/net8.0/dist/wwwroot/_framework/blazor.boot.json
+/home/alejandro/Escritorio/pixel-wall-e/bin/Release/net8.0/vercel.json

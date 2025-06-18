@@ -1,1 +1,5 @@
+/home/alejandro/Escritorio/pixel-wall-e/dist/dist/web.config
+/home/alejandro/Escritorio/pixel-wall-e/dist/dist/wwwroot/sample-data/weather.json
+/home/alejandro/Escritorio/pixel-wall-e/dist/dist/wwwroot/_framework/blazor.boot.json
+/home/alejandro/Escritorio/pixel-wall-e/dist/vercel.json
 /home/alejandro/Escritorio/pixel-wall-e/dist/web.config
